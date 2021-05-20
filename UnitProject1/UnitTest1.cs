@@ -10,7 +10,6 @@ namespace UnitProject1
         public void Setup()
         {
         }
-
         [Test]
         public void GivenDistanceAndTimeShouldReturnTotalFare()
         {
@@ -21,7 +20,6 @@ namespace UnitProject1
             double expected = 25;
             Assert.AreEqual(expected, fare);
         }
-
         [Test]
         public void GivenMultipleRideShouldReturnInvoiceSummary()
         {
@@ -31,7 +29,5 @@ namespace UnitProject1
             InvoiceSummary expectedSummary = new InvoiceSummary(2, 35.0);
             Assert.AreEqual(expectedSummary.GetType(), summary.GetType());
         }
-
     }
-
 }

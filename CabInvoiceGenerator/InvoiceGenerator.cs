@@ -11,7 +11,6 @@ namespace CabInvoiceGenerator
         private readonly double MINIMUM_COST_PER_KM;
         private readonly int COST_PER_TIME;
         private readonly double MINIMUM_FARE;
-
         public InvoiceGenerator(RideType rideType)
         {
             this.rideType = rideType;
@@ -30,14 +29,12 @@ namespace CabInvoiceGenerator
                     this.COST_PER_TIME = 1;
                     this.MINIMUM_FARE = 5;
                 }
-
             }
             catch (CabInvoiceException)
             {
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_RIDE_TYPE, "Invalid ride type");
             }
         }
-
         public double CalculateFare(double distance, int time)
         {
             double totalFare = 0;
@@ -63,8 +60,6 @@ namespace CabInvoiceGenerator
             }
             return Math.Max(totalFare, MINIMUM_FARE);
         }
-
-
         public InvoiceSummary CalculateFare(Ride[] rides)
         {
             double totalFare = 0;
@@ -86,7 +81,6 @@ namespace CabInvoiceGenerator
             }
             return new InvoiceSummary(rides.Length, totalFare);
         }
-
         public InvoiceSummary GetInvoiceSummary(String userId)
         {
             try
@@ -98,7 +92,5 @@ namespace CabInvoiceGenerator
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid user id");
             }
         }
-
     }
-
 }

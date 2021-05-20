@@ -7,7 +7,6 @@ namespace CabInvoiceGenerator
     class RideRepository
     {
         Dictionary<string, List<Ride>> userRides = null;
-
         public RideRepository()
         {
             this.userRides = new Dictionary<string, List<Ride>>();
@@ -29,7 +28,6 @@ namespace CabInvoiceGenerator
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides are null");
             }
         }
-
         public Ride[] getRides(string userId)
         {
             bool rideList = this.userRides.ContainsKey(userId);
@@ -42,7 +40,5 @@ namespace CabInvoiceGenerator
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid user ID");
             }
         }
-
     }
-
 }
