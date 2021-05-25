@@ -29,6 +29,11 @@ namespace CabInvoiceGenerator
                     this.COST_PER_TIME = 1;
                     this.MINIMUM_FARE = 5;
                 }
+                else if(rideType.Equals(RideType.Utltrapremium))
+                {
+                    throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_RIDE_TYPE, "Invalid ride type");
+                }
+               
             }
             catch (CabInvoiceException)
             {
@@ -40,6 +45,15 @@ namespace CabInvoiceGenerator
             double totalFare = 0;
             try
             {
+                  if (distance <= 0)
+                {
+                    throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_DISTANCE, "Invalid distance");
+                }
+                else if (time <= 0)
+                {
+                    throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_TIME, "Invalid time");
+
+                }
                 totalFare = distance * MINIMUM_COST_PER_KM + time * COST_PER_TIME;
             }
             catch (CabInvoiceException)
@@ -48,11 +62,11 @@ namespace CabInvoiceGenerator
                 {
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_RIDE_TYPE, "Invalid ride type");
                 }
-                if (distance <= 0)
+                else if (distance <= 0)
                 {
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_DISTANCE, "Invalid distance");
                 }
-                if (time < 0)
+                else if (time <= 0)
                 {
                     throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_TIME, "Invalid time");
 
@@ -65,6 +79,7 @@ namespace CabInvoiceGenerator
             double totalFare = 0;
             try
             {
+
                 foreach (Ride ride in rides)
                 {
                     totalFare += this.CalculateFare(ride.distance, ride.time);
@@ -91,6 +106,10 @@ namespace CabInvoiceGenerator
             {
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid user id");
             }
+        }
+        public RideRepository ReturnRideRideRepository()
+        {
+            return rideRepository;
         }
     }
 }
